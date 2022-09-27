@@ -1,32 +1,35 @@
 module Main where
 
 import Prelude
-import Data.Maybe (isNothing, fromMaybe)
-import Data.Array (index, reverse, (:))
-import Data.Array.Partial (tail)
-import Partial.Unsafe (unsafePartial)
 import Effect (Effect)
 import Effect.Console (log)
-
-singleton :: forall el. el -> Array el
-singleton el = [el]
-
-null :: forall t. Array t -> Boolean
-null arr = 
-  if isNothing (index arr 0)
-  then true
-  else false
-
-snoc :: forall t. Array t -> t -> Array t
-snoc arr el = reverse(el : (reverse arr))
-
-
-length :: forall t. Array t -> Int
-length arr = 
-  if (null arr)
-  then 0
-  else 1 + length(unsafePartial tail arr)
+import Data.List (List(..))
+import Lab1 as Lab1
 
 
 main :: Effect Unit
-main = log "🍝"
+main = do 
+  log "Lab1.singleton 5"
+  log $ show $ Lab1.singleton 5
+
+  log "\nLab1.singleton (Cons 5 Nil)"
+  log $ show $ Lab1.singleton (Cons 5 Nil)
+
+  log "\nLab1.null (Cons 5 Nil)"
+  log $ show $ Lab1.null (Cons 5 Nil)
+
+  log "\nLab1.null Nil"
+  log $ show $ Lab1.null Nil
+
+  log "\nLab1.snoc (Cons \"hello\" Nil) \"World\""
+  log $ show $ Lab1.snoc (Cons "hello" Nil) "World"
+
+  log "\nLab1.snoc Nil \"World\""
+  log $ show $ Lab1.snoc Nil "World"
+
+  log "\nLab1.length (Cons \"hello\" (Cons \"world\" Nil))"
+  log $ show $ Lab1.length (Cons "hello" (Cons "world" Nil))
+
+  log "\nLab1.length Nil"
+  log $ show $ Lab1.length Nil
+
