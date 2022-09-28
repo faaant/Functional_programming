@@ -22,7 +22,7 @@ main = do
   log $ show $ Lab1.null Nil
 
   log "\nLab1.snoc (Cons \"hello\" Nil) \"World\""
-  log $ show $ Lab1.snoc (Cons "hello" Nil) "World"
+  log $ show $ Lab1.snoc (Cons "World" (Cons "hello" Nil)) "dear"
 
   log "\nLab1.snoc Nil \"World\""
   log $ show $ Lab1.snoc Nil "World"

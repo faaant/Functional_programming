@@ -13,7 +13,7 @@ null list = false
 
 snoc :: forall t. List t -> t -> List t
 snoc Nil el = (Cons el Nil)
-snoc (Cons list _) el = (Cons list (Cons el Nil))
+snoc (Cons first tail) el = (Cons first (snoc tail el))
 
 length :: forall a. List a -> Int
 length Nil = 0
